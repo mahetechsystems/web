@@ -1,0 +1,20 @@
+# Robots.txt for Mahe Tech Systems
+# https://mahetechsystems.com
+
+# Allow all crawlers to access the site
+User-agent: *
+Allow: /
+
+# Disallow API routes
+Disallow: /api/
+
+# Disallow Sanity Studio
+Disallow: /studio
+Disallow: /studio/
+
+# Disallow demo pages
+Disallow: /demo
+Disallow: /demo/
+
+# Sitemap location
+Sitemap: https://mahetechsystems.com/sitemap.xml

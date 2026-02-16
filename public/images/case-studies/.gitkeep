@@ -1,0 +1,20 @@
+# Case Study Images
+
+This directory contains images for case study examples.
+
+## Required Images:
+- saas-transformation.jpg (600x400px)
+- crm-automation.jpg (600x400px)
+- retail-transformation.jpg (600x400px)
+
+## Image Guidelines:
+- Format: JPG or WebP
+- Dimensions: 600x400px (3:2 aspect ratio)
+- Quality: 85%
+- File size: < 200KB per image
+- Alt text should be descriptive and meaningful
+
+## Placeholder Images:
+Until actual images are available, you can use placeholder services like:
+- https://placehold.co/600x400/1F3A5F/FFFFFF?text=Case+Study
+- Or create simple gradient images with the brand colors
