@@ -77,8 +77,10 @@ Access the CMS at [http://localhost:3000/studio](http://localhost:3000/studio)
 - `npm run build` - Build for production
 - `npm start` - Start production server
 - `npm test` - Run tests
+- `npm run test:watch` - Run tests in watch mode
 - `npm run lint` - Run ESLint
-- `npm run sanity` - Start Sanity Studio
+- `npm run format` - Format code with Prettier
+- `npm run sanity` - Start Sanity Studio dev server
 - `npm run validate-schemas` - Validate structured data
 
 ## Project Structure
