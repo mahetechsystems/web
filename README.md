@@ -1,37 +1,170 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mahe Tech Systems Website
 
-## Getting Started
+A high-performance, SEO-optimized portfolio and authority showcase website built with Next.js 14, TypeScript, and Sanity CMS.
 
-First, run the development server:
+## Tech Stack
+
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **CMS**: Sanity
+- **Testing**: Vitest
+- **Deployment**: Vercel
+
+## Prerequisites
+
+- Node.js 18+ and npm
+- Git
+
+## Setup Instructions
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/mahetechsystems/web.git
+cd web
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Environment Variables
+
+Create a `.env.local` file in the root directory:
+
+```bash
+# Site Configuration
+SITE_URL=http://localhost:3000
+
+# Sanity CMS
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
+NEXT_PUBLIC_SANITY_DATASET=production
+SANITY_API_TOKEN=your_api_token
+
+# Email Service (Resend)
+RESEND_API_KEY=your_resend_api_key
+CONTACT_EMAIL=your_email@example.com
+
+# Calendly
+NEXT_PUBLIC_CALENDLY_URL=your_calendly_url
+
+# WhatsApp
+NEXT_PUBLIC_WHATSAPP_NUMBER=your_whatsapp_number
+```
+
+### 4. Run Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 5. Run Sanity Studio (Optional)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run sanity
+```
 
-## Learn More
+Access the CMS at [http://localhost:3000/studio](http://localhost:3000/studio)
 
-To learn more about Next.js, take a look at the following resources:
+## Available Scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm start` - Start production server
+- `npm test` - Run tests
+- `npm run lint` - Run ESLint
+- `npm run sanity` - Start Sanity Studio
+- `npm run validate-schemas` - Validate structured data
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+```
+├── src/
+│   ├── app/              # Next.js pages and routes
+│   ├── components/       # Reusable React components
+│   ├── lib/              # Utility functions and configurations
+│   └── types/            # TypeScript type definitions
+├── sanity/               # Sanity CMS schemas and configuration
+├── public/               # Static assets
+└── scripts/              # Build and utility scripts
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# web
+We welcome contributions! Please follow these guidelines:
+
+### Getting Started
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/your-feature-name`
+3. Make your changes
+4. Run tests: `npm test`
+5. Commit your changes: `git commit -m "feat: add your feature"`
+6. Push to your fork: `git push origin feature/your-feature-name`
+7. Open a Pull Request
+
+### Commit Convention
+
+Follow conventional commits format:
+
+- `feat:` - New feature
+- `fix:` - Bug fix
+- `docs:` - Documentation changes
+- `style:` - Code style changes (formatting, etc.)
+- `refactor:` - Code refactoring
+- `test:` - Adding or updating tests
+- `chore:` - Maintenance tasks
+
+### Code Style
+
+- Use TypeScript for all new code
+- Follow existing code formatting (Prettier)
+- Write tests for new features
+- Ensure all tests pass before submitting PR
+- Keep components small and focused
+
+### Pull Request Process
+
+1. Update documentation if needed
+2. Ensure all tests pass
+3. Request review from maintainers
+4. Address review feedback
+5. Squash commits if requested
+
+## Testing
+
+Run the test suite:
+
+```bash
+npm test
+```
+
+Run tests in watch mode:
+
+```bash
+npm test -- --watch
+```
+
+## Building for Production
+
+```bash
+npm run build
+npm start
+```
+
+## Deployment
+
+The site is automatically deployed to Vercel when changes are pushed to the `main` branch.
+
+## License
+
+All rights reserved - Mahe Tech Systems
+
+## Support
+
+For questions or issues, please open an issue on GitHub or contact us at contact@mahetechsystems.com
