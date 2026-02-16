@@ -70,7 +70,7 @@ export default function Home() {
 
       <main id="main-content" tabIndex={-1} className="min-h-screen bg-[var(--color-background)] focus:outline-none">
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-[var(--color-primary-dark)] via-[var(--color-secondary-blue)] to-[var(--color-accent-blue)]">
+        <section className="relative overflow-hidden bg-gradient-to-br from-[var(--color-primary-dark)] via-[var(--color-secondary-blue)] to-[var(--color-accent-blue)] min-h-[85vh] flex items-center">
           {/* Geometric pattern overlay */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute inset-0" style={{
@@ -78,27 +78,62 @@ export default function Home() {
             }} />
           </div>
 
-          <div className="container relative mx-auto px-6 py-20 md:py-28 lg:py-32">
-            <div className="mx-auto max-w-4xl text-center">
+          {/* Animated gradient orbs */}
+          <div className="absolute top-20 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }} />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6s', animationDelay: '1s' }} />
+
+          <div className="container relative mx-auto px-6 py-24 md:py-32 lg:py-40">
+            <div className="mx-auto max-w-5xl text-center">
+              {/* Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur-sm px-4 py-2 text-sm font-medium text-white border border-white/30"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                Trusted by Ambitious Founders
+              </motion.div>
+
               {/* Headline */}
-              <h1 className="mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
-                Your Structured Execution Partner for Startup Success
-              </h1>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-7xl tracking-tight"
+              >
+                Your Structured Execution Partner for{" "}
+                <span className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+                  Startup Success
+                </span>
+              </motion.h1>
 
               {/* Subheadline */}
-              <p className="mb-10 text-lg text-white/90 md:text-xl lg:text-2xl">
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="mb-10 text-lg text-white/90 md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed"
+              >
                 We don't just build software. We design systems, execute with precision, 
                 and deliver measurable outcomes for founders who need more than promises.
-              </p>
+              </motion.p>
 
               {/* CTAs */}
-              <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="flex flex-col items-center justify-center gap-4 sm:flex-row"
+              >
                 <CTAButton
                   href="/contact"
                   variant="primary"
                   size="lg"
                   trackingEvent="hero_primary_cta_click"
-                  className="bg-white text-[var(--color-primary-dark)] hover:bg-white/90"
+                  className="bg-white text-[var(--color-primary-dark)] hover:bg-white/90 hover:scale-105 transition-all shadow-xl hover:shadow-2xl"
                 >
                   Schedule a Call
                 </CTAButton>
@@ -107,11 +142,38 @@ export default function Home() {
                   variant="outline"
                   size="lg"
                   trackingEvent="hero_secondary_cta_click"
-                  className="border-white text-white hover:bg-white hover:text-[var(--color-primary-dark)]"
+                  className="border-2 border-white text-white hover:bg-white hover:text-[var(--color-primary-dark)] backdrop-blur-sm"
                 >
                   Explore Services
                 </CTAButton>
-              </div>
+              </motion.div>
+
+              {/* Social Proof */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="mt-12 flex flex-wrap items-center justify-center gap-8 text-white/80 text-sm"
+              >
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                  <span>10+ Projects Delivered</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>99.9% Uptime Guaranteed</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
+                  </svg>
+                  <span>3x Faster Execution</span>
+                </div>
+              </motion.div>
             </div>
           </div>
 
@@ -133,14 +195,17 @@ export default function Home() {
         </section>
 
         {/* Problem Section */}
-        <section className="container mx-auto px-6 py-16 md:py-20">
-          <div className="mx-auto max-w-6xl">
+        <section className="container mx-auto px-6 py-20 md:py-28">
+          <div className="mx-auto max-w-7xl">
             {/* Section Header */}
-            <motion.div {...getViewportAnimation(fadeInUp)} className="mb-12 text-center">
-              <h2 className="mb-4 text-3xl font-bold text-[var(--color-text)] md:text-4xl">
+            <motion.div {...getViewportAnimation(fadeInUp)} className="mb-16 text-center">
+              <span className="inline-block mb-4 text-sm font-semibold uppercase tracking-wider text-[var(--color-secondary-blue)]">
+                The Challenge
+              </span>
+              <h2 className="mb-6 text-3xl font-bold text-[var(--color-text)] md:text-4xl lg:text-5xl">
                 The Founder's Execution Gap
               </h2>
-              <p className="mx-auto max-w-2xl text-lg text-gray-600">
+              <p className="mx-auto max-w-3xl text-lg md:text-xl text-gray-600 leading-relaxed">
                 You have the vision. You know what needs to be done. But execution is where most startups stumble.
               </p>
             </motion.div>
@@ -151,7 +216,7 @@ export default function Home() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
-              className="grid gap-6 md:grid-cols-2 lg:grid-cols-4"
+              className="grid gap-8 md:grid-cols-2 lg:grid-cols-4"
             >
               <ProblemCard
                 title="Scattered Priorities"
@@ -198,15 +263,24 @@ export default function Home() {
         </section>
 
         {/* Execution Blocks Section */}
-        <section className="bg-gradient-to-b from-white to-gray-50 py-16 md:py-20">
-          <div className="container mx-auto px-6">
-            <div className="mx-auto max-w-6xl">
+        <section className="relative bg-gradient-to-b from-gray-50 to-white py-20 md:py-28">
+          {/* Background decoration */}
+          <div className="absolute inset-0 overflow-hidden opacity-5">
+            <div className="absolute -top-24 -right-24 w-96 h-96 bg-[var(--color-secondary-blue)] rounded-full blur-3xl" />
+            <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[var(--color-primary-dark)] rounded-full blur-3xl" />
+          </div>
+
+          <div className="container relative mx-auto px-6">
+            <div className="mx-auto max-w-7xl">
               {/* Section Header */}
-              <motion.div {...getViewportAnimation(fadeInUp)} className="mb-12 text-center">
-                <h2 className="mb-4 text-3xl font-bold text-[var(--color-text)] md:text-4xl">
+              <motion.div {...getViewportAnimation(fadeInUp)} className="mb-16 text-center">
+                <span className="inline-block mb-4 text-sm font-semibold uppercase tracking-wider text-[var(--color-secondary-blue)]">
+                  Our Approach
+                </span>
+                <h2 className="mb-6 text-3xl font-bold text-[var(--color-text)] md:text-4xl lg:text-5xl">
                   How We Execute
                 </h2>
-                <p className="mx-auto max-w-2xl text-lg text-gray-600">
+                <p className="mx-auto max-w-3xl text-lg md:text-xl text-gray-600 leading-relaxed">
                   We bring structure to chaos. Our execution framework transforms your vision into measurable outcomes through systematic design and disciplined implementation.
                 </p>
               </motion.div>
@@ -255,7 +329,12 @@ export default function Home() {
         </section>
 
         {/* System Framework Section */}
-        <section className="container mx-auto px-6 py-16 md:py-20">
+        <section className="container mx-auto px-6 py-20 md:py-28">
+          <motion.div {...getViewportAnimation(fadeInUp)} className="mb-16 text-center">
+            <span className="inline-block mb-4 text-sm font-semibold uppercase tracking-wider text-[var(--color-secondary-blue)]">
+              The Process
+            </span>
+          </motion.div>
           <motion.div {...getViewportAnimation(fadeInUp)}>
             <SystemFramework
             title="Our Execution Framework"
@@ -286,15 +365,18 @@ export default function Home() {
         </section>
 
         {/* Case Examples Section */}
-        <section className="bg-white py-16 md:py-20">
+        <section className="bg-gradient-to-b from-white to-gray-50 py-20 md:py-28">
           <div className="container mx-auto px-6">
-            <div className="mx-auto max-w-6xl">
+            <div className="mx-auto max-w-7xl">
               {/* Section Header */}
-              <motion.div {...getViewportAnimation(fadeInUp)} className="mb-12 text-center">
-                <h2 className="mb-4 text-3xl font-bold text-[var(--color-text)] md:text-4xl">
+              <motion.div {...getViewportAnimation(fadeInUp)} className="mb-16 text-center">
+                <span className="inline-block mb-4 text-sm font-semibold uppercase tracking-wider text-[var(--color-secondary-blue)]">
+                  Success Stories
+                </span>
+                <h2 className="mb-6 text-3xl font-bold text-[var(--color-text)] md:text-4xl lg:text-5xl">
                   Proven Results, Real Impact
                 </h2>
-                <p className="mx-auto max-w-2xl text-lg text-gray-600">
+                <p className="mx-auto max-w-3xl text-lg md:text-xl text-gray-600 leading-relaxed">
                   We measure success by outcomes, not outputs. Here's how we've helped founders transform their vision into measurable results.
                 </p>
               </motion.div>
@@ -332,24 +414,42 @@ export default function Home() {
         </section>
 
         {/* Final CTA Section */}
-        <section className="bg-gradient-to-br from-[var(--color-primary-dark)] to-[var(--color-secondary-blue)] py-16 md:py-20">
-          <div className="container mx-auto px-6">
+        <section className="relative overflow-hidden bg-gradient-to-br from-[var(--color-primary-dark)] via-[var(--color-secondary-blue)] to-[var(--color-accent-blue)] py-20 md:py-28">
+          {/* Background decoration */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0" style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            }} />
+          </div>
+
+          <div className="container relative mx-auto px-6">
             <motion.div {...getViewportAnimation(fadeInUp)} className="mx-auto max-w-4xl text-center">
-              <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
+              <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl lg:text-5xl">
                 Ready to Transform Your Execution?
               </h2>
-              <p className="mb-8 text-lg text-white/90 md:text-xl">
+              <p className="mb-10 text-lg md:text-xl text-white/90 leading-relaxed max-w-2xl mx-auto">
                 Let's discuss how structured execution can help you achieve your goals faster and with greater confidence.
               </p>
-              <CTAButton
-                href="/contact"
-                variant="primary"
-                size="lg"
-                trackingEvent="final_cta_click"
-                className="bg-white text-[var(--color-primary-dark)] hover:bg-white/90"
-              >
-                Schedule a Free Consultation
-              </CTAButton>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <CTAButton
+                  href="/contact"
+                  variant="primary"
+                  size="lg"
+                  trackingEvent="final_cta_click"
+                  className="bg-white text-[var(--color-primary-dark)] hover:bg-white/90 hover:scale-105 transition-all shadow-xl"
+                >
+                  Schedule a Free Consultation
+                </CTAButton>
+                <CTAButton
+                  href="/case-studies"
+                  variant="outline"
+                  size="lg"
+                  trackingEvent="final_cta_case_studies_click"
+                  className="border-2 border-white text-white hover:bg-white hover:text-[var(--color-primary-dark)]"
+                >
+                  View Case Studies
+                </CTAButton>
+              </div>
             </motion.div>
           </div>
         </section>
