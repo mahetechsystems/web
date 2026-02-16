@@ -10,3 +10,4 @@ export { SystemFramework } from "./SystemFramework";
 export type { SystemFrameworkProps, FrameworkStep } from "./SystemFramework";
 export { CaseExampleCard } from "./CaseExampleCard";
 export type { CaseExample } from "./CaseExampleCard";
+export { OutboundLink } from "./OutboundLink";

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { type CTAButton as CTAButtonProps } from "@/types";
 import { cn } from "@/lib/utils";
+import { trackCTAClick } from "@/lib/analytics";
 
 /**
  * CTAButton Component
@@ -50,11 +51,12 @@ export function CTAButton({
     }
 
     // Fire analytics event if tracking is enabled
-    if (trackingEvent && typeof window !== "undefined" && window.gtag) {
-      window.gtag("event", trackingEvent, {
-        event_category: "CTA",
-        event_label: typeof children === "string" ? children : "CTA Button",
-      });
+    if (trackingEvent) {
+      trackCTAClick(
+        trackingEvent,
+        typeof children === "string" ? children : "CTA Button",
+        href
+      );
     }
 
     // Call custom onClick handler if provided
@@ -123,15 +125,4 @@ export function CTAButton({
       {icon && <span className="text-xl" aria-hidden="true">{icon}</span>}
     </button>
   );
-}
-
-// Extend Window interface for gtag
-declare global {
-  interface Window {
-    gtag?: (
-      command: string,
-      eventName: string,
-      eventParams?: Record<string, unknown>
-    ) => void;
-  }
 }

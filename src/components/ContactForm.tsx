@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import type { ContactForm as ContactFormData } from "@/types";
+import { trackFormSubmission } from "@/lib/analytics";
 
 // Zod validation schema
 const contactFormSchema = z.object({
@@ -67,12 +68,7 @@ export function ContactForm() {
       reset();
 
       // Track form submission in analytics
-      if (typeof window !== "undefined" && (window as any).gtag) {
-        (window as any).gtag("event", "form_submission", {
-          event_category: "Contact",
-          event_label: "Contact Form",
-        });
-      }
+      trackFormSubmission("contact", "contact-form");
     } catch (error) {
       console.error("Form submission error:", error);
       setSubmitStatus("error");
@@ -96,7 +92,7 @@ export function ContactForm() {
             id="name"
             type="text"
             {...register("name")}
-            className={`w-full rounded-lg border px-4 py-3 text-[var(--color-text)] transition-colors focus:outline-none focus:ring-2 ${
+            className={`w-full rounded-lg border px-4 py-3 text-[var(--color-text)] transition-all duration-200 focus:outline-none focus:ring-2 hover:border-[var(--color-secondary-blue)] ${
               errors.name
                 ? "border-red-500 focus:ring-red-500"
                 : "border-gray-300 focus:border-[var(--color-secondary-blue)] focus:ring-[var(--color-secondary-blue)]"
@@ -120,7 +116,7 @@ export function ContactForm() {
             id="email"
             type="email"
             {...register("email")}
-            className={`w-full rounded-lg border px-4 py-3 text-[var(--color-text)] transition-colors focus:outline-none focus:ring-2 ${
+            className={`w-full rounded-lg border px-4 py-3 text-[var(--color-text)] transition-all duration-200 focus:outline-none focus:ring-2 hover:border-[var(--color-secondary-blue)] ${
               errors.email
                 ? "border-red-500 focus:ring-red-500"
                 : "border-gray-300 focus:border-[var(--color-secondary-blue)] focus:ring-[var(--color-secondary-blue)]"
@@ -144,7 +140,7 @@ export function ContactForm() {
             id="company"
             type="text"
             {...register("company")}
-            className={`w-full rounded-lg border px-4 py-3 text-[var(--color-text)] transition-colors focus:outline-none focus:ring-2 ${
+            className={`w-full rounded-lg border px-4 py-3 text-[var(--color-text)] transition-all duration-200 focus:outline-none focus:ring-2 hover:border-[var(--color-secondary-blue)] ${
               errors.company
                 ? "border-red-500 focus:ring-red-500"
                 : "border-gray-300 focus:border-[var(--color-secondary-blue)] focus:ring-[var(--color-secondary-blue)]"
@@ -168,7 +164,7 @@ export function ContactForm() {
             id="message"
             {...register("message")}
             rows={6}
-            className={`w-full rounded-lg border px-4 py-3 text-[var(--color-text)] transition-colors focus:outline-none focus:ring-2 ${
+            className={`w-full rounded-lg border px-4 py-3 text-[var(--color-text)] transition-all duration-200 focus:outline-none focus:ring-2 hover:border-[var(--color-secondary-blue)] ${
               errors.message
                 ? "border-red-500 focus:ring-red-500"
                 : "border-gray-300 focus:border-[var(--color-secondary-blue)] focus:ring-[var(--color-secondary-blue)]"
@@ -191,7 +187,7 @@ export function ContactForm() {
                 id="consent"
                 type="checkbox"
                 {...register("consent")}
-                className={`h-5 w-5 rounded border-gray-300 text-[var(--color-secondary-blue)] transition-colors focus:ring-2 focus:ring-[var(--color-secondary-blue)] focus:ring-offset-2 ${
+                className={`h-5 w-5 rounded border-gray-300 text-[var(--color-secondary-blue)] transition-all duration-200 hover:border-[var(--color-secondary-blue)] focus:ring-2 focus:ring-[var(--color-secondary-blue)] focus:ring-offset-2 ${
                   errors.consent ? "border-red-500" : ""
                 }`}
                 disabled={isSubmitting}
@@ -286,7 +282,7 @@ export function ContactForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full rounded-lg bg-gradient-to-r from-[var(--color-secondary-blue)] to-[var(--color-accent-blue)] px-8 py-4 font-semibold text-white transition-all hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-60"
+            className="w-full rounded-lg bg-gradient-to-r from-[var(--color-secondary-blue)] to-[var(--color-accent-blue)] px-8 py-4 font-semibold text-white transition-all duration-200 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100"
           >
             {isSubmitting ? (
               <span className="flex items-center justify-center">

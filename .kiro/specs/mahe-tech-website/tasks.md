@@ -1,0 +1,561 @@
+# Implementation Plan: Mahe Tech Systems Website
+
+## Overview
+
+This implementation plan breaks down the development of the Mahe Tech Systems website into discrete, actionable tasks. The approach follows a phased strategy: Foundation (core setup and design system), Content & Pages (implementing all pages), SEO & Performance (optimization), and Testing & Launch (comprehensive testing and deployment).
+
+The implementation uses Next.js 14 with TypeScript, Tailwind CSS for styling, Sanity CMS for content management, and Vercel for hosting. Each task builds incrementally, ensuring the website remains functional at every step.
+
+**Note:** This tasks document has been refreshed to reflect current progress. Many foundational tasks have been completed.
+
+## Tasks
+
+- [x] 1. Project initialization and core setup
+  - [x] 1.1 Initialize Next.js 14 project with TypeScript and App Router
+    - Create new Next.js project with `create-next-app`
+    - Configure TypeScript with strict mode
+    - Set up App Router directory structure
+    - Configure next.config.js for image optimization and performance
+    - _Requirements: 1.5, 1.7, 1.8_
+  - [x] 1.2 Install and configure Tailwind CSS with design system tokens
+    - Install Tailwind CSS and dependencies
+    - Create tailwind.config.ts with custom colors (#1F3A5F, #5F8FB4, #F8FAFC, #111827)
+    - Configure custom fonts (Satoshi/Inter/Manrope for headings, Inter/DM Sans for body)
+    - Set up responsive breakpoints for mobile-first design
+    - Create base styles and CSS reset
+    - _Requirements: 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 13.1_
+  - [x] 1.3 Set up project structure and shared components
+    - Create directory structure (app/, components/, lib/, types/, styles/)
+    - Create shared TypeScript interfaces (types/index.ts)
+    - Set up environment variables (.env.local)
+    - Configure ESLint and Prettier
+    - _Requirements: 2.7_
+
+- [x] 2. Design system and reusable components
+  - [x] 2.1 Create Navigation component with mobile menu
+    - Build responsive navigation header
+    - Implement mobile hamburger menu with animation
+    - Add navigation items for all pages
+    - Implement active link highlighting
+    - Ensure keyboard navigation support
+    - _Requirements: 2.7, 2.8, 2.9, 15.2_
+  - [x] 2.2 Create CTA button component with variants
+    - Build reusable CTAButton component with primary/secondary/outline variants
+    - Implement hover states and animations
+    - Add analytics tracking props
+    - Ensure touch-friendly sizing (44x44px minimum)
+    - _Requirements: 3.6, 10.2, 13.2_
+  - [x] 2.3 Create sticky CTA component
+    - Build StickyCTA component that appears on scroll
+    - Implement scroll threshold detection (after hero section)
+    - Add smooth fade-in animation
+    - Ensure it doesn't impact CLS score
+    - _Requirements: 3.7, 10.5_
+  - [x] 2.4 Create SEO component for meta tags
+    - Build SEO component that accepts title, description, og tags, etc.
+    - Implement Next.js Metadata API integration
+    - Add OpenGraph and Twitter Card support
+    - Generate JSON-LD structured data
+    - _Requirements: 7.4, 7.5, 7.6, 7.7, 7.8, 7.9_
+  - [x] 2.5 Create OptimizedImage component
+    - Build wrapper around Next.js Image component
+    - Implement WebP/AVIF format support with fallbacks
+    - Add lazy loading for below-fold images
+    - Configure responsive srcset and sizes
+    - Add error handling with fallback placeholders
+    - _Requirements: 1.5, 1.6, 13.4, 16.4_
+  - [x] 2.6 Create Footer component
+    - Build footer with navigation links, social media, and contact info
+    - Add privacy policy and terms links
+    - Ensure responsive layout
+    - _Requirements: 17.7_
+
+- [x] 3. Home page implementation
+  - [x] 3.1 Create home page layout and hero section
+    - Build hero section with headline and subheadline
+    - Add primary and secondary CTAs above the fold
+    - Implement hero background with gradient
+    - Ensure hero is optimized for FCP (< 1.2s)
+    - _Requirements: 3.1, 3.6, 1.1_
+  - [x] 3.2 Implement problem section
+    - Create problem cards component
+    - Add 3-4 founder pain points with icons
+    - Implement responsive grid layout
+    - Add subtle entrance animations
+    - _Requirements: 3.2, 10.1_
+  - [x] 3.3 Build execution blocks section
+    - Create execution block cards
+    - Display capabilities with outcomes
+    - Implement responsive layout
+    - Add hover effects
+    - _Requirements: 3.3, 10.2_
+  - [x] 3.4 Create system framework visual
+    - Build animated framework diagram component
+    - Display framework steps with numbers and descriptions
+    - Implement SVG or CSS-based visual
+    - Add scroll-triggered animation
+    - _Requirements: 3.4, 10.1_
+  - [x] 3.5 Add case examples section
+    - Display 2-3 featured case studies
+    - Show client, problem, and outcome
+    - Link to full case study pages
+    - Implement card layout with images
+    - _Requirements: 3.5_
+  - [x] 3.6 Write property test for home page performance
+    - **Property 1: First Contentful Paint Performance**
+    - **Validates: Requirements 1.1**
+  - [x] 3.7 Write property test for sticky CTA behavior
+    - **Property 18: Sticky CTA Visibility**
+    - **Validates: Requirements 3.7**
+
+- [x] 4. About page implementation
+  - [x] 4.1 Create About page layout
+    - Build page structure with semantic HTML
+    - Add founder story section
+    - Add vision and mission sections
+    - Add systems thinking philosophy section
+    - Include founder credentials/background
+    - _Requirements: 20.1, 20.2, 20.3, 20.4, 20.5_
+  - [x] 4.2 Add SEO metadata for About page
+    - Configure unique title and meta description
+    - Add OpenGraph and Twitter Card tags
+    - Implement Schema markup for Person/Organization
+    - _Requirements: 7.6, 7.7, 7.4, 7.5_
+  - [x] 4.3 Write unit tests for About page content
+    - Test that all required sections are present
+    - Test responsive layout
+    - _Requirements: 20.1, 20.2, 20.3, 20.4_
+
+- [x] 5. Services page implementation
+  - [x] 5.1 Create Services page with service sections
+    - Build page layout with service cards
+    - Add detailed descriptions for Startup Execution
+    - Add detailed descriptions for SaaS Development
+    - Add detailed descriptions for Digital Transformation
+    - Add detailed descriptions for Growth & Automation
+    - Add detailed descriptions for CRM & Sales Systems
+    - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5_
+  - [x] 5.2 Implement SEO optimization for Services page
+    - Target keyword cluster "Startup Execution Partner in India"
+    - Add unique title and meta description
+    - Implement Schema markup for Service type
+    - Add internal linking to related pages
+    - _Requirements: 4.7, 4.8, 8.1_
+
+- [x] 6. Sanity CMS setup and integration
+  - [x] 6.1 Set up Sanity CMS project
+    - Create Sanity project and dataset
+    - Install Sanity CLI and dependencies
+    - Configure Sanity Studio
+    - Set up CORS and API access
+    - _Requirements: 6.1_
+  - [x] 6.2 Create Sanity schemas for blog and case studies
+    - Create blog post schema with all fields (title, slug, content, author, etc.)
+    - Create case study schema with problem/design/execution/outcome fields
+    - Create author schema
+    - Create category schema
+    - Add SEO fields to schemas
+    - _Requirements: 6.2, 6.3, 6.4, 6.5_
+  - [x] 6.3 Build Sanity client and query functions
+    - Create Sanity client configuration
+    - Write GROQ queries for blog posts
+    - Write GROQ queries for case studies
+    - Implement ISR with 60-second revalidation
+    - Add error handling for CMS failures
+    - _Requirements: 6.1, 6.7, 16.3_
+  - [x] 6.4 Write integration test for CMS content fetching
+    - Test that blog posts are fetched correctly
+    - Test error handling when CMS is unavailable
+    - _Requirements: 6.1, 16.3_
+
+- [x] 7. Blog system implementation
+  - [x] 7.1 Create blog listing page
+    - Build blog index page at /blog
+    - Fetch and display all blog posts
+    - Show title, excerpt, date, and featured image
+    - Implement responsive grid layout
+    - Add pagination or infinite scroll for scalability
+    - _Requirements: 6.3, 14.1_
+  - [x] 7.2 Create blog post detail page
+    - Build dynamic route for blog posts [slug]
+    - Fetch and render full blog post content
+    - Display author information and publish date
+    - Add social sharing buttons
+    - Implement Portable Text rendering
+    - _Requirements: 6.4, 6.5, 6.6_
+  - [x] 7.3 Add SEO for blog posts
+    - Generate unique title and meta description for each post
+    - Add OpenGraph and Twitter Card tags
+    - Implement BlogPosting Schema markup
+    - Generate canonical URLs
+    - _Requirements: 6.8, 7.6, 7.7, 7.9_
+  - [x] 7.5 Write unit tests for blog rendering
+    - Test blog listing displays posts correctly
+    - Test blog post detail renders content
+    - Test social sharing buttons are present
+    - _Requirements: 6.3, 6.4, 6.6_
+
+- [x] 8. Case studies page implementation
+  - [x] 8.1 Create case studies listing page
+    - Build case studies index page at /case-studies
+    - Fetch and display all case studies
+    - Show client, industry, and brief outcome
+    - Implement card-based layout
+    - _Requirements: 2.4_
+  - [x] 8.2 Create case study detail page
+    - Build dynamic route for case studies [slug]
+    - Display problem statement section
+    - Display system design approach section
+    - Display execution process with phases
+    - Display measurable outcomes
+    - Add images/visuals
+    - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.6_
+  - [x] 8.3 Add SEO for case studies
+    - Generate unique title and meta description
+    - Implement Article Schema markup
+    - Add OpenGraph and Twitter Card tags
+    - _Requirements: 5.7, 7.6, 7.7_
+  - [~] 8.4 Write unit tests for case study structure
+    - Test that all required sections are present
+    - Test Schema markup is valid
+    - _Requirements: 5.1, 5.2, 5.3, 5.4_
+
+- [x] 9. Contact page implementation
+  - [x] 9.1 Create Contact page layout
+    - Build contact page structure
+    - Add location information display
+    - Implement responsive layout
+    - _Requirements: 2.6, 11.6_
+  - [x] 9.2 Implement contact form with validation
+    - Build contact form with name, email, company, message fields
+    - Implement client-side validation using Zod
+    - Add consent checkbox for privacy policy
+    - Implement form state management with React Hook Form
+    - Add loading and success/error states
+    - _Requirements: 11.2, 11.3, 11.7, 11.8_
+  - [x] 9.3 Create API route for form submission
+    - Build /api/contact endpoint
+    - Implement server-side validation
+    - Sanitize user input
+    - Integrate email service (Resend or SendGrid)
+    - Add CSRF protection
+    - Implement rate limiting
+    - _Requirements: 11.4, 17.2, 17.3_
+  - [x] 9.4 Integrate Calendly embed
+    - Add Calendly embed widget above the fold
+    - Implement error handling for Calendly failures
+    - Add fallback link if embed fails to load
+    - _Requirements: 11.1, 16.3_
+  - [x] 9.5 Add WhatsApp contact link
+    - Add WhatsApp button/link with configured number
+    - Ensure mobile-friendly click-to-chat
+    - _Requirements: 11.5_
+  - [~] 9.6 Write unit tests for contact form
+    - Test form validation for invalid inputs
+    - Test form preserves input on submission error
+    - Test success and error messages display
+    - _Requirements: 11.3, 11.7, 11.8, 16.5_
+
+- [x] 10. Checkpoint - Core pages complete
+  - Ensure all pages are accessible and functional
+  - Verify navigation works across all pages
+  - Test responsive layouts on mobile, tablet, and desktop
+  - Ask the user if questions arise
+
+- [x] 11. Performance optimization implementation
+  - [x] 11.1 Implement code splitting strategy
+    - Configure dynamic imports for heavy components (Calendly, animations)
+    - Verify route-based code splitting is working
+    - Analyze bundle sizes with webpack-bundle-analyzer
+    - _Requirements: 1.7_
+  - [x] 11.2 Configure image optimization
+    - Set up Next.js Image component defaults
+    - Configure image domains in next.config.js
+    - Implement responsive image sizes
+    - Add WebP/AVIF format generation
+    - _Requirements: 1.5, 1.6_
+  - [x] 11.3 Implement caching strategy
+    - Configure cache headers for static assets
+    - Set up ISR revalidation times
+    - Implement stale-while-revalidate for dynamic content
+    - _Requirements: 18.6_
+  - [~] 11.4 Write property tests for performance metrics
+    - **Property 2: Full Page Load Performance**
+    - **Property 3: Lighthouse Performance Score**
+    - **Property 4: Core Web Vitals Compliance**
+    - **Validates: Requirements 1.2, 1.3, 1.4**
+  - [~] 11.5 Write property test for image optimization
+    - **Property 5: Image Format Optimization**
+    - **Property 6: Lazy Loading Implementation**
+    - **Validates: Requirements 1.5, 1.6**
+
+- [x] 12. SEO implementation
+  - [x] 12.1 Generate sitemap.xml
+    - Install and configure next-sitemap
+    - Generate sitemap with all static and dynamic pages
+    - Configure sitemap generation in build process
+    - _Requirements: 7.2_
+  - [x] 12.2 Create robots.txt
+    - Create robots.txt with appropriate crawl directives
+    - Allow all pages except admin/api routes
+    - Add sitemap reference
+    - _Requirements: 7.3_
+  - [x] 12.3 Implement structured data across pages
+    - Add Organization Schema to home page
+    - Add Service Schema to services page
+    - Add BlogPosting Schema to blog posts
+    - Add Article Schema to case studies
+    - Validate all Schema markup
+    - _Requirements: 7.8_
+  - [~] 12.4 Write property tests for SEO compliance
+    - **Property 9: OpenGraph Meta Tags**
+    - **Property 10: Twitter Card Meta Tags**
+    - **Property 11: Unique Page Titles**
+    - **Property 12: Unique Meta Descriptions**
+    - **Property 13: Canonical URL Implementation**
+    - **Validates: Requirements 7.4, 7.5, 7.6, 7.7, 7.9**
+  - [~] 12.5 Write property test for heading hierarchy
+    - **Property 14: Heading Hierarchy**
+    - **Validates: Requirements 8.5**
+
+- [x] 13. Analytics and tracking implementation
+  - [x] 13.1 Integrate Google Analytics 4
+    - Install GA4 tracking code
+    - Configure gtag.js with measurement ID
+    - Implement page view tracking
+    - Add consent management
+    - _Requirements: 12.1, 12.7_
+  - [x] 13.2 Integrate Microsoft Clarity
+    - Add Clarity tracking script
+    - Configure session recording
+    - _Requirements: 12.2_
+  - [x] 13.3 Implement event tracking
+    - Create analytics utility functions
+    - Add CTA click tracking
+    - Add form submission tracking
+    - Add outbound link tracking
+    - _Requirements: 12.4, 12.5, 12.6_
+  - [~] 13.4 Write property tests for analytics tracking
+    - **Property 23: CTA Click Tracking**
+    - **Property 24: Form Submission Tracking**
+    - **Property 25: Outbound Link Tracking**
+    - **Validates: Requirements 12.4, 12.5, 12.6**
+
+- [x] 14. Animation and interaction implementation
+  - [x] 14.1 Install and configure Framer Motion
+    - Install framer-motion
+    - Create animation utility functions
+    - Configure animation variants
+    - _Requirements: 10.1_
+  - [x] 14.2 Implement scroll-triggered animations
+    - Add fade-in animations for sections entering viewport
+    - Use Intersection Observer API
+    - Implement prefers-reduced-motion support
+    - Ensure animations don't impact CLS
+    - _Requirements: 10.1, 10.3, 10.5_
+  - [x] 14.3 Add hover states and transitions
+    - Implement hover effects for buttons and links
+    - Add smooth transitions for interactive elements
+    - Ensure touch feedback on mobile
+    - _Requirements: 10.2_
+  - [~] 14.4 Write property tests for animations
+    - **Property 20: Viewport Animation Triggers**
+    - **Property 21: Hover State Feedback**
+    - **Property 22: Reduced Motion Respect**
+    - **Validates: Requirements 10.1, 10.2, 10.3**
+
+- [ ] 15. Accessibility implementation
+  - [-] 15.1 Implement keyboard navigation
+    - Ensure all interactive elements are keyboard accessible
+    - Add proper tab order
+    - Implement skip-to-content link
+    - Test keyboard navigation flow
+    - _Requirements: 15.2_
+  - [~] 15.2 Add ARIA attributes and labels
+    - Add ARIA labels to icon buttons
+    - Implement ARIA live regions for dynamic content
+    - Add proper form labels and associations
+    - Add focus indicators to all focusable elements
+    - _Requirements: 15.5, 15.6, 15.7_
+  - [~] 15.3 Ensure color contrast and visual accessibility
+    - Verify all text meets WCAG AA contrast ratios
+    - Ensure focus indicators are visible
+    - Add non-color indicators where needed
+    - _Requirements: 15.4, 15.6_
+  - [~] 15.4 Write property tests for accessibility
+    - **Property 31: WCAG 2.1 AA Compliance**
+    - **Property 32: Keyboard Navigation Support**
+    - **Property 33: Form Label Association**
+    - **Property 34: Focus Indicator Visibility**
+    - **Property 35: Dynamic Content Announcements**
+    - **Validates: Requirements 15.1, 15.2, 15.5, 15.6, 15.7**
+
+- [ ] 16. Mobile responsiveness implementation
+  - [~] 16.1 Implement responsive layouts for all pages
+    - Test all pages at mobile breakpoints (< 768px)
+    - Test all pages at tablet breakpoints (768px - 1024px)
+    - Ensure single-column layout on mobile
+    - Prevent horizontal scrolling
+    - _Requirements: 13.1, 13.3_
+  - [~] 16.2 Optimize touch targets for mobile
+    - Ensure all buttons and links are minimum 44x44px
+    - Add appropriate spacing between touch targets
+    - Test touch interactions on mobile devices
+    - _Requirements: 13.2_
+  - [~] 16.3 Implement responsive images
+    - Configure srcset and sizes for all images
+    - Test image loading on different devices
+    - Optimize image sizes for mobile
+    - _Requirements: 13.4_
+  - [~] 16.4 Write property tests for mobile responsiveness
+    - **Property 26: Mobile Layout Adaptation**
+    - **Property 27: Touch Target Sizing**
+    - **Property 28: Responsive Image Optimization**
+    - **Property 29: Tablet Layout Adaptation**
+    - **Property 30: Viewport Resize Handling**
+    - **Validates: Requirements 13.1, 13.2, 13.3, 13.4, 13.5, 13.6**
+
+- [ ] 17. Security implementation
+  - [~] 17.1 Configure HTTPS and security headers
+    - Ensure all pages are served over HTTPS
+    - Configure Content Security Policy (CSP)
+    - Add X-Frame-Options header
+    - Add X-Content-Type-Options header
+    - Configure HSTS
+    - _Requirements: 17.1, 17.5_
+  - [~] 17.2 Implement form security
+    - Add CSRF token to contact form
+    - Implement input validation and sanitization
+    - Add rate limiting to API routes
+    - _Requirements: 17.2, 17.3_
+  - [~] 17.3 Add Subresource Integrity for external scripts
+    - Add SRI hashes to external script tags
+    - Verify integrity of third-party resources
+    - _Requirements: 17.4_
+  - [~] 17.4 Create privacy policy page
+    - Write privacy policy content
+    - Create /privacy page
+    - Link from footer
+    - _Requirements: 17.7_
+  - [~] 17.5 Write property tests for security
+    - **Property 36: HTTPS Protocol Enforcement**
+    - **Property 37: Input Validation and Sanitization**
+    - **Property 38: Subresource Integrity**
+    - **Validates: Requirements 17.1, 17.2, 17.4**
+
+- [ ] 18. Error handling implementation
+  - [~] 18.1 Create custom error pages
+    - Create custom 404 page with navigation
+    - Create custom 500 error page
+    - Add error boundary components
+    - _Requirements: 16.1, 16.2_
+  - [~] 18.2 Implement error handling for external services
+    - Add fallback for Calendly embed failures
+    - Add fallback for CMS unavailability
+    - Add fallback for image loading failures
+    - Implement progressive enhancement for JavaScript failures
+    - _Requirements: 16.3, 16.4, 16.6_
+  - [~] 18.3 Add error logging and monitoring
+    - Integrate error monitoring service (e.g., Sentry)
+    - Configure error logging for client and server
+    - Set up error alerts
+    - _Requirements: 16.2_
+  - [~] 18.4 Write unit tests for error handling
+    - Test 404 page displays correctly
+    - Test form error handling preserves input
+    - Test external service fallbacks
+    - _Requirements: 16.1, 16.3, 16.4, 16.5_
+
+- [~] 19. Checkpoint - Pre-deployment validation
+  - Run all property-based tests (minimum 100 iterations each)
+  - Run all unit tests
+  - Run Lighthouse audits on all pages
+  - Run accessibility audits with axe-core
+  - Test on multiple devices and browsers
+  - Verify all analytics tracking works
+  - Ask the user if questions arise
+
+- [ ] 20. Deployment and hosting setup
+  - [~] 20.1 Configure Vercel deployment
+    - Connect GitHub repository to Vercel
+    - Configure environment variables
+    - Set up production and preview deployments
+    - Configure custom domain (mahetechsystems.com)
+    - _Requirements: 18.1, 18.2, 18.3_
+  - [~] 20.2 Configure automatic SSL and CDN
+    - Verify SSL certificate is active
+    - Configure CDN for static assets
+    - Test global performance
+    - _Requirements: 18.5, 1.8_
+  - [~] 20.3 Set up monitoring and alerts
+    - Configure uptime monitoring
+    - Set up performance monitoring
+    - Configure error alerts
+    - Set up Google Search Console
+    - _Requirements: 12.1_
+  - [~] 20.4 Create deployment documentation
+    - Document deployment process
+    - Document environment variables
+    - Document rollback procedures
+    - _Requirements: 18.4_
+
+- [ ] 21. Final testing and launch
+  - [~] 21.1 Run comprehensive E2E test suite
+    - Test all user journeys
+    - Test form submissions
+    - Test navigation flows
+    - Test mobile and desktop experiences
+  - [~] 21.2 Perform final performance audit
+    - Run Lighthouse on all pages
+    - Verify Core Web Vitals in production
+    - Test load times from multiple locations
+    - **Property 1, 2, 3, 4: Performance Properties**
+    - **Validates: Requirements 1.1, 1.2, 1.3, 1.4**
+  - [~] 21.3 Perform final SEO audit
+    - Verify sitemap is accessible
+    - Check robots.txt
+    - Validate all Schema markup
+    - Test social sharing previews
+    - **Property 9, 10, 11, 12, 13: SEO Properties**
+    - **Validates: Requirements 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.9**
+  - [~] 21.4 Perform final accessibility audit
+    - Run axe-core on all pages
+    - Test keyboard navigation
+    - Test with screen readers
+    - **Property 31, 32, 33, 34, 35: Accessibility Properties**
+    - **Validates: Requirements 15.1, 15.2, 15.5, 15.6, 15.7**
+  - [~] 21.5 Deploy to production
+    - Merge to main branch
+    - Verify production deployment
+    - Test production site thoroughly
+    - Submit sitemap to Google Search Console
+    - _Requirements: 18.1_
+
+- [~] 22. Final checkpoint - Launch complete
+  - Verify all functionality works in production
+  - Monitor error logs and performance metrics
+  - Ensure analytics are tracking correctly
+  - Ask the user if questions arise
+
+## Notes
+
+- All foundational tasks (1-14) have been completed
+- Core pages (Home, About, Services, Case Studies, Blog, Contact) are implemented
+- Design system components are in place
+- Sanity CMS integration is complete
+- Analytics and tracking are configured
+- Animations and interactions are implemented
+- Remaining work focuses on:
+  - Property-based testing for validation
+  - Unit tests for specific components
+  - Accessibility implementation
+  - Mobile responsiveness validation
+  - Security hardening
+  - Error handling improvements
+  - Deployment and production setup
+- Each remaining task references specific requirements for traceability
+- Property-based tests should run with minimum 100 iterations
+- Checkpoints ensure incremental validation and user feedback
+- All property tests should be tagged with: `Feature: mahe-tech-website, Property {number}: {property_text}`
+- Unit tests focus on specific examples and edge cases
+- Property tests validate universal correctness across all inputs

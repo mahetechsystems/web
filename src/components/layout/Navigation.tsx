@@ -47,13 +47,14 @@ export function Navigation() {
   };
 
   return (
-    <nav
-      className="sticky top-0 z-50 bg-white shadow-sm"
-      role="navigation"
-      aria-label="Main navigation"
-    >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+    <header className="sticky top-0 z-50 bg-white shadow-sm">
+      <nav
+        className="mx-auto max-w-7xl"
+        role="navigation"
+        aria-label="Main navigation"
+      >
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link
@@ -119,32 +120,32 @@ export function Navigation() {
             </button>
           </div>
         </div>
-      </div>
 
-      {/* Mobile menu */}
-      <div
-        id="mobile-menu"
-        className={`md:hidden ${isMobileMenuOpen ? "block" : "hidden"}`}
-        role="menu"
-      >
-        <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-          {navigationItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`block rounded-md px-3 py-2 text-base font-medium transition-colors ${
-                isActive(item.href)
-                  ? "bg-[var(--color-primary-dark)] text-white"
-                  : "text-[var(--color-text)] hover:bg-[var(--color-background)] hover:text-[var(--color-primary-dark)]"
-              }`}
-              role="menuitem"
-              aria-current={isActive(item.href) ? "page" : undefined}
-            >
-              {item.label}
-            </Link>
-          ))}
+        {/* Mobile menu */}
+        <div
+          id="mobile-menu"
+          className={`md:hidden ${isMobileMenuOpen ? "block" : "hidden"}`}
+          role="menu"
+        >
+          <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
+            {navigationItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`block rounded-md px-3 py-2 text-base font-medium transition-colors ${
+                  isActive(item.href)
+                    ? "bg-[var(--color-primary-dark)] text-white"
+                    : "text-[var(--color-text)] hover:bg-[var(--color-background)] hover:text-[var(--color-primary-dark)]"
+                }`}
+                role="menuitem"
+                aria-current={isActive(item.href) ? "page" : undefined}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 }

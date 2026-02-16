@@ -207,6 +207,8 @@ describe("CTAButton", () => {
       expect(mockGtag).toHaveBeenCalledWith("event", "cta_click", {
         event_category: "CTA",
         event_label: "Track Me",
+        cta_id: "cta_click",
+        destination: "",
       });
     });
 

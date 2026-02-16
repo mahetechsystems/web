@@ -1,36 +1,11 @@
-import { Metadata } from "next";
+"use client";
+
+import { motion } from "framer-motion";
 import { ServiceCard } from "@/components/ui/ServiceCard";
 import { CTAButton } from "@/components/ui/CTAButton";
 import { SERVICES } from "@/lib/services-data";
-import { generateMetadata as generateSEOMetadata } from "@/lib/seo";
 import { StructuredData } from "@/components/seo";
-
-/**
- * Services Page
- *
- * Displays all service offerings with detailed descriptions, key features, and outcomes.
- * Optimized for SEO with target keyword "Startup Execution Partner in India".
- *
- * Requirements: 4.1-4.5, 4.6, 4.7, 4.8, 8.1
- */
-
-export const metadata: Metadata = generateSEOMetadata({
-  title: "Services - Startup Execution Partner in India",
-  description:
-    "Structured execution services for startups and businesses: Startup Execution, SaaS Development, Digital Transformation, Growth Automation, and CRM Systems. Partner with India's leading execution-focused tech partner.",
-  canonical: "/services",
-  ogType: "website",
-  keywords: [
-    "startup execution partner India",
-    "SaaS development India",
-    "digital transformation",
-    "growth automation",
-    "CRM implementation",
-    "business process automation",
-    "MVP development",
-    "startup systems thinking",
-  ],
-});
+import { fadeInUp, staggerContainer, staggerItem, getViewportAnimation } from "@/lib/animations";
 
 export default function ServicesPage() {
   // Generate schema markup for all services
@@ -45,7 +20,7 @@ export default function ServicesPage() {
   };
 
   return (
-    <main className="min-h-screen">
+    <main id="main-content" tabIndex={-1} className="min-h-screen focus:outline-none">
       {/* Schema.org structured data for SEO (Requirement 4.7) */}
       <StructuredData data={servicesSchema} />
 
@@ -87,7 +62,7 @@ export default function ServicesPage() {
       <section className="py-16 md:py-24 bg-[var(--color-background)]">
         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
           {/* Section Header */}
-          <div className="mb-12 md:mb-16">
+          <motion.div {...getViewportAnimation(fadeInUp)} className="mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-primary-dark)] mb-4">
               Our Services
             </h2>
@@ -96,20 +71,28 @@ export default function ServicesPage() {
               execute with structure and scale with systems. Each service is
               outcome-focused and built on proven execution frameworks.
             </p>
-          </div>
+          </motion.div>
 
           {/* Service Cards */}
-          <div className="space-y-8 md:space-y-12">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            className="space-y-8 md:space-y-12"
+          >
             {SERVICES.map((service) => (
-              <ServiceCard key={service.id} service={service} />
+              <motion.div key={service.id} variants={staggerItem}>
+                <ServiceCard service={service} />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="py-16 md:py-20 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-4xl text-center">
+        <motion.div {...getViewportAnimation(fadeInUp)} className="container mx-auto px-4 md:px-6 max-w-4xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-primary-dark)] mb-4">
             Ready to Build Systems That Work?
           </h2>
@@ -135,18 +118,25 @@ export default function ServicesPage() {
               Learn About Our Approach
             </CTAButton>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Internal Linking Section - SEO Requirement 8.4 */}
       <section className="py-12 md:py-16 bg-[var(--color-background)]">
         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-primary-dark)] mb-8 text-center">
+          <motion.h2 {...getViewportAnimation(fadeInUp)} className="text-2xl md:text-3xl font-bold text-[var(--color-primary-dark)] mb-8 text-center">
             Explore More
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          </motion.h2>
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            className="grid md:grid-cols-3 gap-6"
+          >
             {/* About Link */}
-            <a
+            <motion.a
+              variants={staggerItem}
               href="/about"
               className="group p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-100"
             >
@@ -160,10 +150,11 @@ export default function ServicesPage() {
               <span className="text-[var(--color-secondary-blue)] font-medium group-hover:underline">
                 Read our story →
               </span>
-            </a>
+            </motion.a>
 
             {/* Case Studies Link */}
-            <a
+            <motion.a
+              variants={staggerItem}
               href="/case-studies"
               className="group p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-100"
             >
@@ -177,10 +168,11 @@ export default function ServicesPage() {
               <span className="text-[var(--color-secondary-blue)] font-medium group-hover:underline">
                 View case studies →
               </span>
-            </a>
+            </motion.a>
 
             {/* Contact Link */}
-            <a
+            <motion.a
+              variants={staggerItem}
               href="/contact"
               className="group p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-100"
             >
@@ -194,8 +186,8 @@ export default function ServicesPage() {
               <span className="text-[var(--color-secondary-blue)] font-medium group-hover:underline">
                 Contact us →
               </span>
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
         </div>
       </section>
     </main>

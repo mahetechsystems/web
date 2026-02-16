@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, DM_Sans } from "next/font/google";
 import "./globals.css";
-import { Navigation } from "@/components/layout";
+import { Navigation, Footer } from "@/components/layout";
+import { SkipToContent } from "@/components/layout/SkipToContent";
+import { GoogleAnalytics, MicrosoftClarity } from "@/components/analytics";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -26,11 +28,27 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "";
+  const clarityProjectId = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID || "";
+
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${dmSans.variable} antialiased`}>
+      <body 
+        className={`${inter.variable} ${dmSans.variable} antialiased`}
+        suppressHydrationWarning
+      >
+        {/* Google Analytics 4 */}
+        <GoogleAnalytics measurementId={measurementId} />
+        
+        {/* Microsoft Clarity */}
+        <MicrosoftClarity projectId={clarityProjectId} />
+        
+        {/* Skip to content link for keyboard navigation */}
+        <SkipToContent />
+        
         <Navigation />
         {children}
+        <Footer />
       </body>
     </html>
   );

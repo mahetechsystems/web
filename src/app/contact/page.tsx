@@ -62,7 +62,7 @@ export default function ContactPage() {
       {/* Add structured data to the page */}
       <StructuredData data={contactSchema} />
 
-      <div className="min-h-screen bg-[var(--color-background)]">
+      <div id="main-content" tabIndex={-1} className="min-h-screen bg-[var(--color-background)] focus:outline-none">
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-br from-[var(--color-primary-dark)] via-[var(--color-secondary-blue)] to-[var(--color-accent-blue)]">
           {/* Geometric pattern overlay */}

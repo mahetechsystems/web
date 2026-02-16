@@ -1,30 +1,13 @@
+"use client";
+
+import { motion } from "framer-motion";
 import {
-  generateMetadata,
   generatePersonSchema,
   generateOrganizationSchema,
 } from "@/lib/seo";
 import { StructuredData } from "@/components/seo";
 import { CTAButton } from "@/components/ui";
-
-// Generate SEO metadata for the About page
-export const metadata = generateMetadata({
-  title: "About Us - Structured Execution Partner for Founders",
-  description:
-    "Learn about Mahe Tech Systems, our mission to empower founders with structured execution, and our systems thinking philosophy that drives measurable outcomes.",
-  canonical: "/about",
-  ogType: "website",
-  ogImage: "/images/about-og.jpg",
-  twitterCard: "summary_large_image",
-  keywords: [
-    "about mahe tech",
-    "systems thinking",
-    "startup execution",
-    "founder story",
-    "execution partner",
-    "structured execution",
-    "systems thinking philosophy",
-  ],
-});
+import { fadeInUp, staggerContainer, staggerItem, getViewportAnimation } from "@/lib/animations";
 
 export default function AboutPage() {
   // Generate structured data for the founder
@@ -44,7 +27,7 @@ export default function AboutPage() {
       {/* Add structured data to the page */}
       <StructuredData data={[founderSchema, organizationSchema]} />
 
-      <div className="min-h-screen bg-[var(--color-background)]">
+      <div className="min-h-screen bg-[var(--color-background)]" id="main-content" tabIndex={-1}>
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-br from-[var(--color-primary-dark)] via-[var(--color-secondary-blue)] to-[var(--color-accent-blue)]">
           {/* Geometric pattern overlay */}
@@ -91,49 +74,55 @@ export default function AboutPage() {
         {/* Founder Story Section */}
         <section className="container mx-auto px-6 py-16 md:py-20">
           <div className="mx-auto max-w-4xl">
-            <div className="mb-12 text-center">
+            <motion.div {...getViewportAnimation(fadeInUp)} className="mb-12 text-center">
               <h2 className="mb-4 text-3xl font-bold text-[var(--color-text)] md:text-4xl">
                 The Story Behind Mahe Tech Systems
               </h2>
-            </div>
+            </motion.div>
 
-            <div className="space-y-6 text-lg leading-relaxed text-gray-700">
-              <p>
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              className="space-y-6 text-lg leading-relaxed text-gray-700"
+            >
+              <motion.p variants={staggerItem}>
                 Mahe Tech Systems was born from a simple observation: most startups
                 don't fail because of bad ideas—they fail because of poor execution.
                 Founders have vision, ambition, and drive, but they often lack the
                 structured systems needed to transform those qualities into
                 measurable outcomes.
-              </p>
+              </motion.p>
 
-              <p>
+              <motion.p variants={staggerItem}>
                 After years of working with startups across India and globally, I
                 noticed a pattern. Founders would hire developers who wrote code.
                 They'd hire consultants who gave advice. They'd hire agencies who
                 ran campaigns. But what they really needed was someone who could
                 design systems, execute with precision, and deliver results that
                 moved the business forward.
-              </p>
+              </motion.p>
 
-              <p>
+              <motion.p variants={staggerItem}>
                 That's why I founded Mahe Tech Systems—not as another development
                 shop or consulting firm, but as a structured execution partner.
                 We bring systems thinking to every project, breaking down complex
                 challenges into manageable components, designing scalable solutions,
                 and executing with the discipline that founders need but rarely find.
-              </p>
+              </motion.p>
 
-              <p>
+              <motion.p variants={staggerItem}>
                 Every engagement starts with understanding your business goals, not
                 just your technical requirements. We don't build features—we build
                 systems that drive outcomes. We don't deliver projects—we deliver
                 measurable results. And we don't disappear after launch—we optimize
                 continuously based on real data.
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
 
             {/* Founder Credentials */}
-            <div className="mt-12 rounded-xl bg-white p-8 shadow-md">
+            <motion.div {...getViewportAnimation(fadeInUp)} className="mt-12 rounded-xl bg-white p-8 shadow-md">
               <h3 className="mb-6 text-2xl font-bold text-[var(--color-text)]">
                 Background & Expertise
               </h3>
@@ -257,17 +246,23 @@ export default function AboutPage() {
                   </ul>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
         {/* Vision & Mission Section */}
         <section className="bg-white py-16 md:py-20">
           <div className="container mx-auto px-6">
-            <div className="mx-auto max-w-6xl">
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              className="mx-auto max-w-6xl"
+            >
               <div className="grid gap-12 md:grid-cols-2">
                 {/* Vision */}
-                <div className="rounded-xl bg-gradient-to-br from-[var(--color-primary-dark)] to-[var(--color-secondary-blue)] p-8 text-white shadow-lg">
+                <motion.div variants={staggerItem} className="rounded-xl bg-gradient-to-br from-[var(--color-primary-dark)] to-[var(--color-secondary-blue)] p-8 text-white shadow-lg">
                   <div className="mb-4 inline-flex rounded-full bg-white/20 p-3">
                     <svg
                       className="h-8 w-8"
@@ -298,10 +293,10 @@ export default function AboutPage() {
                     access to structured execution expertise that accelerates their
                     path to success.
                   </p>
-                </div>
+                </motion.div>
 
                 {/* Mission */}
-                <div className="rounded-xl bg-gradient-to-br from-[var(--color-secondary-blue)] to-[var(--color-accent-light)] p-8 text-white shadow-lg">
+                <motion.div variants={staggerItem} className="rounded-xl bg-gradient-to-br from-[var(--color-secondary-blue)] to-[var(--color-accent-light)] p-8 text-white shadow-lg">
                   <div className="mb-4 inline-flex rounded-full bg-white/20 p-3">
                     <svg
                       className="h-8 w-8"
@@ -326,16 +321,16 @@ export default function AboutPage() {
                     opportunity to prove that systematic thinking and disciplined
                     execution are the keys to startup success.
                   </p>
-                </div>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
         {/* Systems Thinking Philosophy Section */}
         <section className="container mx-auto px-6 py-16 md:py-20">
           <div className="mx-auto max-w-4xl">
-            <div className="mb-12 text-center">
+            <motion.div {...getViewportAnimation(fadeInUp)} className="mb-12 text-center">
               <h2 className="mb-4 text-3xl font-bold text-[var(--color-text)] md:text-4xl">
                 Our Systems Thinking Philosophy
               </h2>
@@ -343,11 +338,17 @@ export default function AboutPage() {
                 Systems thinking isn't just a methodology—it's how we approach
                 every challenge, design every solution, and measure every outcome.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="space-y-8">
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+              className="space-y-8"
+            >
               {/* Philosophy Point 1 */}
-              <div className="rounded-xl border-l-4 border-[var(--color-secondary-blue)] bg-white p-6 shadow-md">
+              <motion.div variants={staggerItem} className="rounded-xl border-l-4 border-[var(--color-secondary-blue)] bg-white p-6 shadow-md">
                 <h3 className="mb-3 text-xl font-bold text-[var(--color-text)]">
                   1. Everything is a System
                 </h3>
@@ -359,10 +360,10 @@ export default function AboutPage() {
                   area don't create problems in another. This holistic view is what
                   separates sustainable growth from short-term fixes.
                 </p>
-              </div>
+              </motion.div>
 
               {/* Philosophy Point 2 */}
-              <div className="rounded-xl border-l-4 border-[var(--color-secondary-blue)] bg-white p-6 shadow-md">
+              <motion.div variants={staggerItem} className="rounded-xl border-l-4 border-[var(--color-secondary-blue)] bg-white p-6 shadow-md">
                 <h3 className="mb-3 text-xl font-bold text-[var(--color-text)]">
                   2. Structure Enables Speed
                 </h3>
@@ -373,10 +374,10 @@ export default function AboutPage() {
                   right structure because we know it pays dividends in execution
                   speed, team alignment, and outcome quality.
                 </p>
-              </div>
+              </motion.div>
 
               {/* Philosophy Point 3 */}
-              <div className="rounded-xl border-l-4 border-[var(--color-secondary-blue)] bg-white p-6 shadow-md">
+              <motion.div variants={staggerItem} className="rounded-xl border-l-4 border-[var(--color-secondary-blue)] bg-white p-6 shadow-md">
                 <h3 className="mb-3 text-xl font-bold text-[var(--color-text)]">
                   3. Measure What Matters
                 </h3>
@@ -387,10 +388,10 @@ export default function AboutPage() {
                   whether you're winning or losing, and we use that data to
                   continuously optimize for better results.
                 </p>
-              </div>
+              </motion.div>
 
               {/* Philosophy Point 4 */}
-              <div className="rounded-xl border-l-4 border-[var(--color-secondary-blue)] bg-white p-6 shadow-md">
+              <motion.div variants={staggerItem} className="rounded-xl border-l-4 border-[var(--color-secondary-blue)] bg-white p-6 shadow-md">
                 <h3 className="mb-3 text-xl font-bold text-[var(--color-text)]">
                   4. Execution is Everything
                 </h3>
@@ -401,10 +402,10 @@ export default function AboutPage() {
                   ensures that execution isn't chaotic or reactive—it's structured,
                   predictable, and continuously improving.
                 </p>
-              </div>
+              </motion.div>
 
               {/* Philosophy Point 5 */}
-              <div className="rounded-xl border-l-4 border-[var(--color-secondary-blue)] bg-white p-6 shadow-md">
+              <motion.div variants={staggerItem} className="rounded-xl border-l-4 border-[var(--color-secondary-blue)] bg-white p-6 shadow-md">
                 <h3 className="mb-3 text-xl font-bold text-[var(--color-text)]">
                   5. Scalability by Design
                 </h3>
@@ -415,15 +416,15 @@ export default function AboutPage() {
                   an afterthought—it's baked into every architectural decision,
                   every process design, and every implementation choice.
                 </p>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </section>
 
         {/* Final CTA Section */}
         <section className="bg-gradient-to-br from-[var(--color-primary-dark)] to-[var(--color-secondary-blue)] py-16 md:py-20">
           <div className="container mx-auto px-6">
-            <div className="mx-auto max-w-4xl text-center">
+            <motion.div {...getViewportAnimation(fadeInUp)} className="mx-auto max-w-4xl text-center">
               <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
                 Ready to Work Together?
               </h2>
@@ -441,7 +442,7 @@ export default function AboutPage() {
               >
                 Schedule a Consultation
               </CTAButton>
-            </div>
+            </motion.div>
           </div>
         </section>
       </div>

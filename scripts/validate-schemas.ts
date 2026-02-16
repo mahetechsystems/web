@@ -85,7 +85,7 @@ results.push(validateSchema('WebSite', websiteSchema))
 console.log('3️⃣  Validating Service Schemas...')
 SERVICES.forEach((service, index) => {
   results.push(
-    validateSchema(`Service ${index + 1}: ${service.title}`, service.schema)
+    validateSchema(`Service ${index + 1}: ${service.title}`, service.schema as unknown as Record<string, unknown>)
   )
 })
 

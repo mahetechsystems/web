@@ -74,6 +74,7 @@ export function StickyCTA({
     <>
       {/* Fixed container - always in DOM to prevent CLS */}
       <div
+        data-testid="sticky-cta"
         className={cn(
           "fixed bottom-0 left-0 right-0 z-50 pointer-events-none",
           "transition-opacity duration-300 ease-in-out",

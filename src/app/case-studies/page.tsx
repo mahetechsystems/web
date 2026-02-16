@@ -24,7 +24,7 @@ export default async function CaseStudiesPage() {
   const caseStudies = await getAllCaseStudies()
 
   return (
-    <main className="min-h-screen">
+    <main id="main-content" tabIndex={-1} className="min-h-screen focus:outline-none">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-[#1F3A5F] to-[#5F8FB4] py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">

@@ -1,84 +1,74 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { StructuredData } from "@/components/seo";
-import { CTAButton, ProblemCard, ExecutionBlock, SystemFramework, CaseExampleCard, CaseExample } from "@/components/ui";
+import { CTAButton, ProblemCard, ExecutionBlock, SystemFramework, CaseExampleCard, CaseExample, StickyCTA } from "@/components/ui";
 import {
-  generateMetadata,
   generateOrganizationSchema,
   generateWebSiteSchema,
 } from "@/lib/seo";
+import { fadeInUp, staggerContainer, getViewportAnimation } from "@/lib/animations";
 
-// Generate SEO metadata for the homepage
-export const metadata = generateMetadata({
-  canonical: "/",
-  ogType: "website",
-  keywords: [
-    "startup execution partner",
-    "SaaS development India",
-    "digital transformation",
-    "growth automation",
-    "structured execution",
-  ],
-});
+// Featured case examples data
+const featuredCaseExamples: CaseExample[] = [
+  {
+    slug: "saas-platform-transformation",
+    title: "SaaS Platform Transformation",
+    client: "FinTech Startup",
+    problem:
+      "Struggling with a monolithic architecture that couldn't scale. Customer onboarding took 2 weeks, and the system crashed during peak usage.",
+    outcome:
+      "Reduced onboarding time to 2 hours, achieved 99.9% uptime, and scaled to 10x user base without infrastructure changes.",
+    image: {
+      src: "/images/case-studies/saas-transformation.svg",
+      alt: "SaaS platform dashboard showing improved performance metrics",
+      width: 600,
+      height: 400,
+    },
+  },
+  {
+    slug: "crm-automation-system",
+    title: "CRM & Sales Automation",
+    client: "B2B Services Company",
+    problem:
+      "Sales team spending 60% of time on manual data entry and follow-ups. No visibility into pipeline health or conversion metrics.",
+    outcome:
+      "Automated 80% of manual tasks, increased sales team productivity by 3x, and improved conversion rate by 45%.",
+    image: {
+      src: "/images/case-studies/crm-automation.svg",
+      alt: "CRM automation dashboard with sales pipeline visualization",
+      width: 600,
+      height: 400,
+    },
+  },
+  {
+    slug: "digital-transformation-retail",
+    title: "Digital Transformation for Retail",
+    client: "Multi-Brand Retailer",
+    problem:
+      "Disconnected systems across inventory, sales, and customer data. No unified view of business operations or customer behavior.",
+    outcome:
+      "Integrated 5 systems into unified platform, reduced inventory costs by 30%, and increased customer retention by 25%.",
+    image: {
+      src: "/images/case-studies/retail-transformation.svg",
+      alt: "Retail analytics dashboard showing unified business metrics",
+      width: 600,
+      height: 400,
+    },
+  },
+];
 
 export default function Home() {
   // Generate structured data for the homepage
   const organizationSchema = generateOrganizationSchema();
   const websiteSchema = generateWebSiteSchema();
 
-  // Featured case examples
-  const featuredCaseExamples: CaseExample[] = [
-    {
-      slug: "saas-platform-transformation",
-      title: "SaaS Platform Transformation",
-      client: "FinTech Startup",
-      problem:
-        "Struggling with a monolithic architecture that couldn't scale. Customer onboarding took 2 weeks, and the system crashed during peak usage.",
-      outcome:
-        "Reduced onboarding time to 2 hours, achieved 99.9% uptime, and scaled to 10x user base without infrastructure changes.",
-      image: {
-        src: "/images/case-studies/saas-transformation.svg",
-        alt: "SaaS platform dashboard showing improved performance metrics",
-        width: 600,
-        height: 400,
-      },
-    },
-    {
-      slug: "crm-automation-system",
-      title: "CRM & Sales Automation",
-      client: "B2B Services Company",
-      problem:
-        "Sales team spending 60% of time on manual data entry and follow-ups. No visibility into pipeline health or conversion metrics.",
-      outcome:
-        "Automated 80% of manual tasks, increased sales team productivity by 3x, and improved conversion rate by 45%.",
-      image: {
-        src: "/images/case-studies/crm-automation.svg",
-        alt: "CRM automation dashboard with sales pipeline visualization",
-        width: 600,
-        height: 400,
-      },
-    },
-    {
-      slug: "digital-transformation-retail",
-      title: "Digital Transformation for Retail",
-      client: "Multi-Brand Retailer",
-      problem:
-        "Disconnected systems across inventory, sales, and customer data. No unified view of business operations or customer behavior.",
-      outcome:
-        "Integrated 5 systems into unified platform, reduced inventory costs by 30%, and increased customer retention by 25%.",
-      image: {
-        src: "/images/case-studies/retail-transformation.svg",
-        alt: "Retail analytics dashboard showing unified business metrics",
-        width: 600,
-        height: 400,
-      },
-    },
-  ];
-
   return (
     <>
       {/* Add structured data to the page */}
       <StructuredData data={[organizationSchema, websiteSchema]} />
 
-      <div className="min-h-screen bg-[var(--color-background)]">
+      <main id="main-content" tabIndex={-1} className="min-h-screen bg-[var(--color-background)] focus:outline-none">
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-br from-[var(--color-primary-dark)] via-[var(--color-secondary-blue)] to-[var(--color-accent-blue)]">
           {/* Geometric pattern overlay */}
@@ -146,17 +136,23 @@ export default function Home() {
         <section className="container mx-auto px-6 py-16 md:py-20">
           <div className="mx-auto max-w-6xl">
             {/* Section Header */}
-            <div className="mb-12 text-center">
+            <motion.div {...getViewportAnimation(fadeInUp)} className="mb-12 text-center">
               <h2 className="mb-4 text-3xl font-bold text-[var(--color-text)] md:text-4xl">
                 The Founder's Execution Gap
               </h2>
               <p className="mx-auto max-w-2xl text-lg text-gray-600">
                 You have the vision. You know what needs to be done. But execution is where most startups stumble.
               </p>
-            </div>
+            </motion.div>
 
             {/* Problem Cards Grid */}
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              className="grid gap-6 md:grid-cols-2 lg:grid-cols-4"
+            >
               <ProblemCard
                 title="Scattered Priorities"
                 description="Too many ideas, not enough focus. You're building features instead of systems, reacting instead of executing strategically."
@@ -197,7 +193,7 @@ export default function Home() {
                 }
                 index={3}
               />
-            </div>
+            </motion.div>
           </div>
         </section>
 
@@ -206,17 +202,23 @@ export default function Home() {
           <div className="container mx-auto px-6">
             <div className="mx-auto max-w-6xl">
               {/* Section Header */}
-              <div className="mb-12 text-center">
+              <motion.div {...getViewportAnimation(fadeInUp)} className="mb-12 text-center">
                 <h2 className="mb-4 text-3xl font-bold text-[var(--color-text)] md:text-4xl">
                   How We Execute
                 </h2>
                 <p className="mx-auto max-w-2xl text-lg text-gray-600">
                   We bring structure to chaos. Our execution framework transforms your vision into measurable outcomes through systematic design and disciplined implementation.
                 </p>
-              </div>
+              </motion.div>
 
               {/* Execution Blocks Grid */}
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              <motion.div
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+              >
                 <ExecutionBlock
                   title="System Design"
                   description="We architect scalable systems that grow with your business. Every decision is documented, every component is purposeful, and every integration is planned."
@@ -247,14 +249,15 @@ export default function Home() {
                   ]}
                   index={2}
                 />
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
 
         {/* System Framework Section */}
         <section className="container mx-auto px-6 py-16 md:py-20">
-          <SystemFramework
+          <motion.div {...getViewportAnimation(fadeInUp)}>
+            <SystemFramework
             title="Our Execution Framework"
             steps={[
               {
@@ -279,6 +282,7 @@ export default function Home() {
               },
             ]}
           />
+          </motion.div>
         </section>
 
         {/* Case Examples Section */}
@@ -286,17 +290,23 @@ export default function Home() {
           <div className="container mx-auto px-6">
             <div className="mx-auto max-w-6xl">
               {/* Section Header */}
-              <div className="mb-12 text-center">
+              <motion.div {...getViewportAnimation(fadeInUp)} className="mb-12 text-center">
                 <h2 className="mb-4 text-3xl font-bold text-[var(--color-text)] md:text-4xl">
                   Proven Results, Real Impact
                 </h2>
                 <p className="mx-auto max-w-2xl text-lg text-gray-600">
                   We measure success by outcomes, not outputs. Here's how we've helped founders transform their vision into measurable results.
                 </p>
-              </div>
+              </motion.div>
 
               {/* Case Examples Grid */}
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              <motion.div
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+              >
                 {featuredCaseExamples.map((caseExample, index) => (
                   <CaseExampleCard
                     key={caseExample.slug}
@@ -304,10 +314,10 @@ export default function Home() {
                     index={index}
                   />
                 ))}
-              </div>
+              </motion.div>
 
               {/* View All Link */}
-              <div className="mt-12 text-center">
+              <motion.div {...getViewportAnimation(fadeInUp)} className="mt-12 text-center">
                 <CTAButton
                   href="/case-studies"
                   variant="outline"
@@ -316,7 +326,7 @@ export default function Home() {
                 >
                   View All Case Studies
                 </CTAButton>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
@@ -324,7 +334,7 @@ export default function Home() {
         {/* Final CTA Section */}
         <section className="bg-gradient-to-br from-[var(--color-primary-dark)] to-[var(--color-secondary-blue)] py-16 md:py-20">
           <div className="container mx-auto px-6">
-            <div className="mx-auto max-w-4xl text-center">
+            <motion.div {...getViewportAnimation(fadeInUp)} className="mx-auto max-w-4xl text-center">
               <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
                 Ready to Transform Your Execution?
               </h2>
@@ -340,10 +350,20 @@ export default function Home() {
               >
                 Schedule a Free Consultation
               </CTAButton>
-            </div>
+            </motion.div>
           </div>
         </section>
-      </div>
+      </main>
+
+      {/* Sticky CTA - appears after scrolling past hero section */}
+      <StickyCTA
+        text="Schedule a Call"
+        href="/contact"
+        variant="primary"
+        size="md"
+        scrollThreshold={600}
+        trackingEvent="sticky_cta_click"
+      />
     </>
   );
 }

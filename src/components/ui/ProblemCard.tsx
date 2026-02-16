@@ -41,7 +41,9 @@ export function ProblemCard({ title, description, icon, index = 0 }: ProblemCard
     <div
       ref={cardRef}
       className={`
-        rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-all duration-700
+        group rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-all duration-700
+        hover:border-[var(--color-secondary-blue)] hover:shadow-lg hover:-translate-y-1
+        active:scale-[0.98]
         ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
       `}
       style={{
@@ -49,12 +51,12 @@ export function ProblemCard({ title, description, icon, index = 0 }: ProblemCard
       }}
     >
       {/* Icon */}
-      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-[var(--color-primary-dark)] to-[var(--color-secondary-blue)] text-white">
+      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-[var(--color-primary-dark)] to-[var(--color-secondary-blue)] text-white transition-transform duration-300 group-hover:scale-110">
         {icon}
       </div>
 
       {/* Title */}
-      <h3 className="mb-3 text-xl font-semibold text-[var(--color-text)]">
+      <h3 className="mb-3 text-xl font-semibold text-[var(--color-text)] transition-colors duration-300 group-hover:text-[var(--color-primary-dark)]">
         {title}
       </h3>
 
